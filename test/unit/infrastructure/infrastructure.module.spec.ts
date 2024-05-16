@@ -15,11 +15,11 @@ describe(InfrastructureModule.name, () => {
   });
 
   it('should inject all expected core interfaces', async () => {
-    fluentObject(clients)
+    fluentObject(clients as Record<string, Function>)
       .map(1)
-      .combine(fluentObject(caches).map(1))
+      .concat(fluentObject(caches).map(1))
       .forEach(item => {
-        expect(target.get(item.constructor)).toBe([item]);
+        expect(target.get(item)).not.toBeNull();
       });
   });
 });

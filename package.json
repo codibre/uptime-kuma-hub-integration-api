@@ -1,5 +1,5 @@
 {
-  "name": "grafana-uptime-kuma-integration-api",
+  "name": "uptime-kuma-hub-integration-api",
   "version": "0.0.1",
   "description": "Utility api to integrate grafana alerts with uptime kuma",
   "author": "Farenheith",
@@ -72,7 +72,7 @@
       "json",
       "ts"
     ],
-    "rootDir": "test",
+    "rootDir": ".",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
@@ -83,14 +83,10 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
     "setupFilesAfterEnv": [
-      "./setup-jest.ts"
+      "./test/setup-jest.ts"
     ],
     "moduleNameMapper": {
-      "@domain/(.*)": "<rootDir>/src/domain/$1",
-      "@domain-core/(.*)": "<rootDir>/src/domain-core/$1",
-      "@application/(.*)": "<rootDir>/src/application/$1",
-      "@infrastructure/(.*)": "<rootDir>/src/infrastructure/$1",
-      "@entrypoint/(.*)": "<rootDir>/src/entrypoint/$1"
+      "^@((?:core|domain-model|domain|application|infrastructure|entrypoint)(?:/.*)?)": "<rootDir>/src/$1"
     }
   }
 }

@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { CacheWrapper } from '../../core/cache';
-import { AlertApiClient } from '../../core/clients';
+import { CacheWrapper } from '@core/cache';
+import { AlertApiClient } from '@core/clients';
 import { fluentAsync } from '@codibre/fluent-iterable';
-import { AlertStatusEnum } from '../../core/entities/internal';
+import { AlertStatusEnum } from '@core/entities/internal';
 
 @Injectable()
 export class AlertService {

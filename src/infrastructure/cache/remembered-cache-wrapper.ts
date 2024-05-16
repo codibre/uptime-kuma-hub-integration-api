@@ -1,5 +1,5 @@
 import { Remembered } from 'remembered';
-import { CacheWrapper } from '../../core/cache';
+import { CacheWrapper } from '@core/cache';
 import ms from 'ms';
 import { Injectable } from '@nestjs/common';
 

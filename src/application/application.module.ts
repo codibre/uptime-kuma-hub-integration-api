@@ -1,6 +1,6 @@
 import { DynamicModule, Type } from '@nestjs/common';
-import { DomainModule } from '../domain';
-import { CoreModule } from '../core';
+import { DomainModule } from '@domain';
+import { CoreModule } from '@core';
 import * as commandHandlers from './handlers';
 
 const providers = Object.values(commandHandlers);

@@ -5,7 +5,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
-import { AlertStatusCommand } from '../../../application/commands';
+import { AlertStatusCommand } from '@application/commands';
 
 @Controller('/alerts')
 export class AlertsController {

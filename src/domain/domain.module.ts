@@ -1,6 +1,6 @@
 import { DynamicModule, Type } from '@nestjs/common';
 import * as services from './services';
-import { CoreModule } from '../core';
+import { CoreModule } from '@core';
 
 const providers = Object.values(services);
 

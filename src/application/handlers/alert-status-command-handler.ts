@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { AlertStatusCommand } from '../commands';
-import { AlertService } from '../../domain/services/alert-service';
+import { AlertService } from '@domain/services/alert-service';
 import { fluent } from '@codibre/fluent-iterable';
 import { identity } from 'rxjs';
 

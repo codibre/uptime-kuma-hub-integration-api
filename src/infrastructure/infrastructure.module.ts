@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { CoreModule } from '../core';
+import { CoreModule } from '@core';
 import { HttpModule } from '@nestjs/axios';
-import { CacheWrapper } from '../core/cache';
+import { CacheWrapper } from '@core/cache';
 import { RememberedCacheWrapper } from './cache/remembered-cache-wrapper';
-import { AlertApiClient } from '../core/clients';
+import { AlertApiClient } from '@core/clients';
 import { GrafanaAlertApiClient } from './clients';
 
 @Module({

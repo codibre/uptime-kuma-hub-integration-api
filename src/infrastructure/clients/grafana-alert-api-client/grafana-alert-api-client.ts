@@ -1,11 +1,11 @@
 import { fluent } from '@codibre/fluent-iterable';
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { AlertApiClient } from '../../../core/clients';
+import { AlertApiClient } from '@core/clients';
 import {
   AlertApiResponseItem,
   AlertStatusEnum,
-} from '../../../core/entities/internal';
+} from '@core/entities/internal';
 // import { firstValueFrom } from 'rxjs';
 import { GrafanaAlertResponse } from './grafana-alert-response';
 import { test } from './mock';
@@ -14,14 +14,15 @@ import { test } from './mock';
 export class GrafanaAlertApiClient implements AlertApiClient {
   constructor(private client: HttpService) {}
 
-  async getAlerts(): Promise<Iterable<AlertApiResponseItem>> {
+  async *getAlerts(): AsyncIterable<AlertApiResponseItem> {
     // const result = (await firstValueFrom(
     //   this.client.get<GrafanaAlertResponse>(
     //     'https://grafana.gb.tech/api/prometheus/grafana/api/v1/alerts',
     //   ),
     // )).data;
+
     const result: GrafanaAlertResponse = test;
-    return fluent(result.data.alerts)
+    yield* fluent(result.data.alerts)
       .map((item) => {
         const alertId = item.annotations.__alertId__;
         if (alertId) {

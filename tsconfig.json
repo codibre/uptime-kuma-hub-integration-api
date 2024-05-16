@@ -21,12 +21,18 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "paths": {
+      "@domain": ["./src/domain"],
       "@domain/*": ["./src/domain/*"],
+      "@domain-model": ["./src/domain-model"],
       "@domain-model/*": ["./src/domain-model/*"],
+      "@core": ["./src/core"],
       "@core/*": ["./src/core/*"],
+      "@application": ["./src/application/index"],
       "@application/*": ["./src/application/*"],
+      "@infrastructure": ["./src/infrastructure"],
       "@infrastructure/*": ["./src/infrastructure/*"],
-      "@entrypoint": ["./src/entrypoint/*"]
+      "@entrypoint": ["./src/entrypoint"],
+      "@entrypoint/*": ["./src/entrypoint/*"]
     }
   },
   "include": ["./src", "./test"]
