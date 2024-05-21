@@ -35,10 +35,13 @@
       "request": "launch",
       "name": "Tests",
       "skipFiles": [
-        "<node_internals>/**"
+        "<node_internals>/**",
+        "${workspaceRoot}/node_modules/**/*fluent-iterable*/**",
+        "${workspaceRoot}/node_modules/**/*augmentative-iterable*/**",
+        "${workspaceRoot}/node_modules/**/*jest*/**"
       ],
       "cwd": "${workspaceRoot}",
-      "runtimeExecutable": "${env:NVM_DIR}/nvm-exec",
+      "runtimeExecutable": "${env:HOME}/.nvm/nvm-exec",
       "sourceMaps": true,
       "env": {
         "TZ": "UTC"

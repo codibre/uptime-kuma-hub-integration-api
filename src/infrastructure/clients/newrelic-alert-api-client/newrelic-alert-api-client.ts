@@ -2,7 +2,7 @@ import { fluentAsync, depaginate } from '@codibre/fluent-iterable';
 import { Injectable } from '@nestjs/common';
 import { Axios } from 'axios';
 import { AlertApiClient } from '@core/clients';
-import { AlertApiResponseItem } from '@core/entities/internal';
+import { AlertApiResponseItem, AlertStatusEnum } from '@core/entities/internal';
 import { NewRelicAlertResponseResult } from './newrelic-alert-response-result';
 
 @Injectable()
@@ -21,13 +21,20 @@ export class AlertAlertApiClient implements AlertApiClient {
         });
         current += result.data.items.length;
         return {
-          results: result.data.items as NewRelicAlertResponseResult[], // itens da página
+          results: result.data.items, // itens da página
           nextPageToken:
             result.data.total > current ? (token ?? 1) + 1 : undefined,
         };
       },
     );
 
-    return fluentAsync(depaginateResult).map((x) => x as AlertApiResponseItem);
+    return fluentAsync(depaginateResult).map((x) => {
+      const converted: AlertApiResponseItem = {
+        ...x,
+        id: '123',
+        status: AlertStatusEnum.OK,
+      };
+      return converted;
+    });
   }
 }

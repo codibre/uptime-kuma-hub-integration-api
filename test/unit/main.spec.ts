@@ -17,9 +17,13 @@ describe('main file', () => {
   });
 
   it('should initialize EntryPointHttpModule and fluent-iterable extensions', async () => {
+    // Arrange
+
+    // Act
     require('../../src/main');
     await setTimeout(1);
 
+    // Assert
     expect(
       require('@codibre/fluent-iterable').fluent([]).toObservable,
     ).toBeDefined();

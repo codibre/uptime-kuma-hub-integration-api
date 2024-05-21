@@ -1,8 +1,7 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { AlertStatusCommand } from '../commands';
 import { AlertService } from '@domain/services/alert-service';
-import { fluent } from '@codibre/fluent-iterable';
-import { identity } from 'rxjs';
+import { fluent, fluentAsync, identity } from '@codibre/fluent-iterable';
 
 @CommandHandler(AlertStatusCommand)
 export class AlertStatusCommandHandler
@@ -10,9 +9,10 @@ export class AlertStatusCommandHandler
 {
   constructor(private alertService: AlertService) {}
   async execute(command: AlertStatusCommand): Promise<boolean> {
-    return fluent(command.alertIds)
-      .map((alertId) => this.alertService.isOk(alertId))
-      .toAsync()
-      .every(identity);
+    return fluentAsync(
+      fluent(command.alertIds).waitAll((alertId) =>
+        this.alertService.isOk(alertId),
+      ),
+    ).every(identity);
   }
 }

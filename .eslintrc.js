@@ -8,6 +8,7 @@ module.exports = {
     files: ['test/*.ts', 'test/**/*.ts'],
     rules: {
       '@typescript-eslint/no-magic-numbers': 'off',
+      "no-type-assertion/no-type-assertion": "off",
       '@typescript-eslint/no-unused-expressions': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
     },
@@ -18,7 +19,7 @@ module.exports = {
     project: ['tsconfig.json', 'tsconfig.test.json'],
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint', 'unused-imports'],
+  plugins: ['@typescript-eslint', 'unused-imports', "no-type-assertion"],
   rules: {
     '@typescript-eslint/member-delimiter-style': [
       'error',
@@ -35,6 +36,7 @@ module.exports = {
     ],
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/no-empty-function': 'error',
+    "no-type-assertion/no-type-assertion": "error",
     '@typescript-eslint/no-unnecessary-type-assertion': 'error',
     '@typescript-eslint/no-unused-expressions': 'warn',
     '@typescript-eslint/no-use-before-define': 'error',
