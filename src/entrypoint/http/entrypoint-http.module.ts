@@ -9,7 +9,6 @@ import { CqrsModule } from '@nestjs/cqrs';
   imports: [
     CqrsModule,
     ApplicationModule.forRoot(InfrastructureModule),
-    InfrastructureModule,
     CoreModule,
   ],
   controllers: [AlertsController],

@@ -24,7 +24,7 @@ describe(EntryPointHttpModule.name, () => {
       .concat(fluentObject(controllers).map(1))
       .concat(fluentObject(handlers).map(1))
       .concat(fluentObject(services).map(1))
-      .forEach(item => {
+      .forEach((item) => {
         expect(target.get(item)).not.toBeNull();
       });
   });

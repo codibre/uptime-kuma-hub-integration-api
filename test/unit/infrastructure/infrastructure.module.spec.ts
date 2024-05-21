@@ -18,7 +18,7 @@ describe(InfrastructureModule.name, () => {
     fluentObject(clients as Record<string, Function>)
       .map(1)
       .concat(fluentObject(caches).map(1))
-      .forEach(item => {
+      .forEach((item) => {
         expect(target.get(item)).not.toBeNull();
       });
   });

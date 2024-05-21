@@ -3,7 +3,9 @@ import { setTimeout } from 'timers/promises';
 const NestFactory = {} as any;
 const EntryPointHttpModule = {};
 jest.mock('@nestjs/core', () => ({ NestFactory }));
-jest.mock('@entrypoint/http/entrypoint-http.module', () => ({ EntryPointHttpModule }));
+jest.mock('@entrypoint/http/entrypoint-http.module', () => ({
+  EntryPointHttpModule,
+}));
 
 describe('main file', () => {
   let app: any;
@@ -18,7 +20,9 @@ describe('main file', () => {
     require('../../src/main');
     await setTimeout(1);
 
-    expect(require('@codibre/fluent-iterable').fluent([]).toObservable).toBeDefined();
+    expect(
+      require('@codibre/fluent-iterable').fluent([]).toObservable,
+    ).toBeDefined();
     expect(NestFactory.create).toHaveCallsLike([EntryPointHttpModule]);
     expect(app.listen).toHaveCallsLike([3000]);
   });

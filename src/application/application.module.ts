@@ -9,10 +9,7 @@ export class ApplicationModule {
   static forRoot(infraModule: Type<unknown>): DynamicModule {
     return {
       module: ApplicationModule,
-      imports: [
-        DomainModule.forRoot(infraModule),
-        CoreModule,
-      ],
+      imports: [DomainModule.forRoot(infraModule), CoreModule],
       providers,
       exports: providers,
     };

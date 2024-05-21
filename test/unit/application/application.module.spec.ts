@@ -23,7 +23,7 @@ describe(ApplicationModule.name, () => {
     ],
     exports: [CacheWrapper, AlertApiClient],
   })
-  class MyModule{}
+  class MyModule {}
 
   beforeEach(async () => {
     target = await Test.createTestingModule({
@@ -34,7 +34,7 @@ describe(ApplicationModule.name, () => {
   it('should inject all expected core interfaces', async () => {
     fluentObject(handlers as Record<string, Function>)
       .map(1)
-      .forEach(item => {
+      .forEach((item) => {
         expect(target.get(item)).not.toBeNull();
       });
   });

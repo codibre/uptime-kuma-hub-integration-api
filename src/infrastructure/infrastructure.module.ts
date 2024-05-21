@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { CoreModule } from '@core';
 import { HttpModule, HttpService } from '@nestjs/axios';
 import { CacheWrapper } from '@core/cache';
-import { RememberedCacheWrapper } from './cache/remembered-cache-wrapper';
+import { RememberedCacheWrapper } from './cache';
 import { AlertApiClient } from '@core/clients';
 import { GrafanaAlertApiClient } from './clients';
 import { Axios } from 'axios';
