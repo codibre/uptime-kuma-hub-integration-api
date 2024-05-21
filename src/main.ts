@@ -1,7 +1,7 @@
 import '@codibre/fluent-iterable';
 import '@fluent-iterable/rxjs';
 import { NestFactory } from '@nestjs/core';
-import { EntryPointHttpModule } from './entrypoint/http/entrypoint-http.module';
+import { EntryPointHttpModule } from '@entrypoint/http/entrypoint-http.module';
 
 const PORT = 3000;
 

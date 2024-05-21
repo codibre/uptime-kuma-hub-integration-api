@@ -1,28 +1,30 @@
-import { fluent } from '@codibre/fluent-iterable';
-import { Injectable } from '@nestjs/common';
-import { HttpService } from '@nestjs/axios';
+import { fluentAsync } from '@codibre/fluent-iterable';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Axios } from 'axios';
 import { AlertApiClient } from '@core/clients';
 import {
   AlertApiResponseItem,
   AlertStatusEnum,
 } from '@core/entities/internal';
-// import { firstValueFrom } from 'rxjs';
 import { GrafanaAlertResponse } from './grafana-alert-response';
-import { test } from './mock';
 
 @Injectable()
 export class GrafanaAlertApiClient implements AlertApiClient {
-  constructor(private client: HttpService) {}
+  private readonly mock = process.env.GRAFANA_MOCK === 'true';
+  private readonly alertUrl = process.env.GRAFANA_ALERT_URL;
 
-  async *getAlerts(): AsyncIterable<AlertApiResponseItem> {
-    // const result = (await firstValueFrom(
-    //   this.client.get<GrafanaAlertResponse>(
-    //     'https://grafana.gb.tech/api/prometheus/grafana/api/v1/alerts',
-    //   ),
-    // )).data;
+  constructor(private client: Axios) {}
 
-    const result: GrafanaAlertResponse = test;
-    yield* fluent(result.data.alerts)
+  getAlerts(): AsyncIterable<AlertApiResponseItem> {
+    let result: GrafanaAlertResponse[] | Promise<GrafanaAlertResponse[]>;
+    if (this.mock) result = require('./mock');
+    else {
+      if (!this.alertUrl) throw new InternalServerErrorException('No grafana alert url found!');
+      result = this.client.get<GrafanaAlertResponse>(this.alertUrl).then(x => [x.data]);
+    }
+
+    return fluentAsync(result)
+      .flatMap(x => x.data.alerts)
       .map((item) => {
         const alertId = item.annotations.__alertId__;
         if (alertId) {
