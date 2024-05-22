@@ -5,14 +5,104 @@ module.exports = {
     node: true,
   },
   overrides: [{
-    files: ['test/*.ts', 'test/**/*.ts'],
+    files: ['test/**/*.ts'],
     rules: {
       '@typescript-eslint/no-magic-numbers': 'off',
       "no-type-assertion/no-type-assertion": "off",
       '@typescript-eslint/no-unused-expressions': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
     },
-  }, ],
+  }, {
+    files: ['src/core/**/*.ts'],
+    rules: {
+      "@typescript-eslint/no-restricted-imports": ["error", {
+        patterns: [{
+          group: [
+            "@domain/*",
+            "*/domain/*",
+            "*/handlers/*",
+            "@application/*",
+            "*/application/*",
+            "@infrastructure/*",
+            "*/infrastructure/*",
+            "@entrypoint/*",
+            "*/entrypoint/*"
+          ]
+        }]
+      }]
+    }
+  }, {
+    files: ['src/domain/**/*.ts'],
+    rules: {
+      "@typescript-eslint/no-restricted-imports": ["error", {
+        patterns: [{
+          group: [
+            "./*",
+            "../*",
+            "*/handlers/*",
+            "@application/*",
+            "*/application/*",
+            "@domain/*",
+            "*/domain/*",
+            "@infrastructure/*",
+            "*/infrastructure/*",
+            "@entrypoint/*",
+            "*/entrypoint/*"
+          ]
+        }]
+      }]
+    }
+  }, {
+    files: ['src/application/**/*.ts'],
+    rules: {
+      "@typescript-eslint/no-restricted-imports": ["error", {
+        patterns: [{
+          group: [
+            "./*",
+            "../*",
+            "!../commands",
+            "*/handlers/*",
+            "@application/*",
+            "*/application/*",
+            "@infrastructure/*",
+            "*/infrastructure/*",
+            "@entrypoint/*",
+            "*/entrypoint/*"
+          ]
+        }]
+      }]
+    }
+  }, {
+    files: ['src/entrypoint/**/*.ts'],
+    rules: {
+      "@typescript-eslint/no-restricted-imports": ["error", {
+        patterns: [{
+          group: [
+            "./*",
+            "../*",
+            "*/handlers/*",
+            "@domain/*",
+            "*/domain/*",
+            "@infrastructure/*",
+            "*/infrastructure/*",
+            "@entrypoint/*",
+            "*/entrypoint/*"
+          ]
+        }]
+      }]
+    }
+  }, {
+    files: ['src/**/index.ts', 'src/**/*.module.ts'],
+    rules: {
+      "@typescript-eslint/no-restricted-imports": ["error", {
+        patterns: [{
+          group: [
+            "!./*"
+          ]
+        }]
+      }]
+    }
+  }],
   ignorePatterns: ['dist/**', 'build/**', 'bin/**', 'templates/**', '*.py', ".eslintrc.js", "**/*.json"],
   parser: '@typescript-eslint/parser',
   parserOptions: {
