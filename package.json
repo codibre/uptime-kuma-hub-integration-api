@@ -29,7 +29,7 @@
     "@codibre/fluent-iterable": "^1.36.0",
     "@fluent-iterable/rxjs": "^1.0.2",
     "@nestjs/axios": "^3.0.2",
-    "@nestjs/common": "^10.3.8",
+    "@nestjs/common": "^10.4.16",
     "@nestjs/core": "^11.1.5",
     "@nestjs/cqrs": "^11.0.3",
     "@nestjs/platform-express": "^11.1.5",
